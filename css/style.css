@@ -81,6 +81,13 @@ h2 {
   text-align: center;
 }
 
+#color-value {
+    height: 30px;
+    width: 80px;
+    margin-left: 1rem;
+    text-align: center;
+  }
+
 /*Preview*/
 #box {
   width: 100%;

@@ -8,6 +8,8 @@ class BoxShadowGenerator {
     blurRef,
     spread,
     spreadRef,
+    color,
+    colorRef,
     previewBox,
     rule,
     webkitRule,
@@ -21,6 +23,8 @@ class BoxShadowGenerator {
     this.blurRef = blurRef;
     this.spread = spread;
     this.spreadRef = spreadRef;
+    this.color = color;
+    this.colorRef = colorRef;
     this.previewBox = previewBox;
     this.rule = rule;
     this.webkitRule = webkitRule;
@@ -32,13 +36,15 @@ class BoxShadowGenerator {
     this.verticalRef.value = this.vertical.value;
     this.blurRef.value = this.blur.value;
     this.spreadRef.value = this.spread.value;
+    this.colorRef.value = this.color.value;
 
     this.applyRule();
     this.showRule();
+    
   }
 
   applyRule() {
-    this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.blurRef.value}px ${this.spreadRef.value}px #000000`;
+    this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.blurRef.value}px ${this.spreadRef.value}px ${this.colorRef.value}`;
     this.currentRule = this.previewBox.style.boxShadow;
   }
 
@@ -62,6 +68,9 @@ class BoxShadowGenerator {
       case "spread":
         this.spreadRef.value = value;
         break;
+      case "color":
+        this.colorRef.value = value;
+        break;
     }
 
     this.applyRule();
@@ -78,6 +87,8 @@ const blur = document.querySelector("#blur");
 const blurRef = document.querySelector("#blur-value");
 const spread = document.querySelector("#spread");
 const spreadRef = document.querySelector("#spread-value");
+const color = document.querySelector("#color");
+const colorRef = document.querySelector("#color-value");
 
 const previewBox = document.querySelector("#box");
 
@@ -94,6 +105,8 @@ const boxShadow = new BoxShadowGenerator(
   blurRef,
   spread,
   spreadRef,
+  color,
+  colorRef,
   previewBox,
   rule,
   webkitRule,
@@ -122,4 +135,9 @@ spread.addEventListener("input", (e) => {
   const value = e.target.value;
 
   boxShadow.updateValue("spread", value);
+});
+color.addEventListener("input", (e) => {
+  const value = e.target.value;
+
+  boxShadow.updateValue("color", value);
 });
